@@ -1,8 +1,9 @@
-int pedirDatos(int A, int B);
-int sumarOperandos(int primerOperando, int segundoOperando);
-int restarOperandos(int primerOperando, int segundoOperando);
-float dividirOperadores(int primerOperando, int segundoOperando);
-int multiplicarOperadores(int primerOperando, int segundoOperando);
-int factorizarPrimerOperando(int primerOperando);
-int factorizarSegundoOperando(int segundoOperando);
-int calcularYMostrarOperaciones(int primerOperando, int segundoOperando);
+int mostrarMenu(int);
+int pedirNumero(int,int);
+int sumarOperandos(int,int);
+int restarOperandos(int,int);
+float dividirOperadores(int,int);
+int multiplicarOperadores(int,int);
+int factorizarOperando(int);
+void calcularOperaciones();
+void calcularYMostrarOperaciones(int,int,int);
