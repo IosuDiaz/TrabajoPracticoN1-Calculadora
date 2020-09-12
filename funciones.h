@@ -1,0 +1,10 @@
+int mostrarMenu(int);
+float pedirNumero(float,int);
+float sumarOperandos(float,float);
+float restarOperandos(float,float);
+float dividirOperadores(float,float);
+float multiplicarOperadores(float,float);
+int factorizarOperando(float);
+void calcularOperaciones();
+void mostrarOperaciones(float,float,float,float,float,float,int,int);
+int verificarDecimal(float);

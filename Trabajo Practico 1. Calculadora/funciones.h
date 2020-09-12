@@ -1,9 +1,0 @@
-int mostrarMenu(int);
-int pedirNumero(int,int);
-int sumarOperandos(int,int);
-int restarOperandos(int,int);
-float dividirOperadores(int,int);
-int multiplicarOperadores(int,int);
-int factorizarOperando(int);
-void calcularOperaciones();
-void calcularYMostrarOperaciones(int,int,int);

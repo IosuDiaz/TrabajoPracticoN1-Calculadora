@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1599942442 source:c:\users\user\desktop\utn\programación\trabajo practico 1 calculadora\funciones.c
+	<stdio.h>
+	<stdlib.h>
+
+1599930706 source:c:\users\user\desktop\utn\programación\trabajo practico 1 calculadora\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1599942554 c:\users\user\desktop\utn\programación\trabajo practico 1 calculadora\funciones.h
+
