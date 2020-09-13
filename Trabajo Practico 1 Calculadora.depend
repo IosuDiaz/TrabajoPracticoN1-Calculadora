@@ -10,3 +10,14 @@
 
 1599942554 c:\users\user\desktop\utn\programación\trabajo practico 1 calculadora\funciones.h
 
+1599954399 source:c:\users\user\desktop\trabajopracticon1-calculadora\funciones.c
+	<stdio.h>
+	<stdlib.h>
+
+1599953290 source:c:\users\user\desktop\trabajopracticon1-calculadora\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1599954399 c:\users\user\desktop\trabajopracticon1-calculadora\funciones.h
+
