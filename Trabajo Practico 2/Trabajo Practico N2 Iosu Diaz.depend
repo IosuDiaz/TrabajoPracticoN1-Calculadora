@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1601318237 source:c:\users\user\desktop\utn\programación\trabajo practico n2 iosu diaz\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+	"controlador.h"
+
+1601318256 c:\users\user\desktop\utn\programación\trabajo practico n2 iosu diaz\arrayemployees.h
+
+1601318208 source:c:\users\user\desktop\utn\programación\trabajo practico n2 iosu diaz\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+
+1601317849 source:c:\users\user\desktop\utn\programación\trabajo practico n2 iosu diaz\controlador.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"controlador.h"
+
+1601244216 c:\users\user\desktop\utn\programación\trabajo practico n2 iosu diaz\controlador.h
+
+1601317849 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\controlador.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"controlador.h"
+
+1601244216 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\controlador.h
+
+1601346139 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+
+1601420043 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\arrayemployees.h
+
+1601346140 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+	"controlador.h"
+
