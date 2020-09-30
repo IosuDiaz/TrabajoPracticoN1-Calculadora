@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ArrayEmployees.h"
+
 #include "controlador.h"
-#define DIM 1000
+#include "ArrayEmployees.h"
+
+#define DIM 10
 
 int main()
 {
@@ -11,33 +13,38 @@ int main()
     int mappedOption;
     int resultOfInit;
 
-    //MENU
-    Menu(chosenOption);
-    //MAPEO DE OPCIONES
-    mappedOption=MappingChosenOption(chosenOption);
     //INICIALIZAR EMPLEADOS
-    resultOfInit=initEmployees(rosterOfEmployees,10);
-
-    printf("%d",resultOfInit);
-
-    switch(mappedOption)
+    resultOfInit=initEmployees(rosterOfEmployees,DIM);
+    do
     {
-        //ALTA
-        case 1:
+        //MENU
+        Menu(chosenOption);
+        //MAPEO DE OPCIONES
+        mappedOption=MappingChosenOption(chosenOption);
+        //printf("%d",resultOfInit);
 
-            break;
-        //MODIFICAR
-        case 2:
+        switch(mappedOption)
+        {
+            //ALTA
+            case 1:
+                CreateAnEmployee(rosterOfEmployees,DIM);
+                break;
+            //MODIFICAR
+            case 2:
 
-            break;
-        //BAJA
-        case 3:
+                break;
+            //BAJA
+            case 3:
 
-            break;
-        //INFORMAR
-        case 4:
+                break;
+            //INFORMAR
+            case 4:
 
-            break;
+                break;
+
+        }
     }
+    while(mappedOption==1);
+
     return 0;
 }

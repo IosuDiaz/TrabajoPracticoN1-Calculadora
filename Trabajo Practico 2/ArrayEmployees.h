@@ -33,7 +33,8 @@ int initEmployees(Employee listOfEmployees[], int len);
 * \param sector int
 * \return int Return (-1) if Error [Invalid length or NULL pointer or withoutfree space] - (0) if Ok
 */
-int addEmployee(Employee* list, int len, int id, char name[],char lastName[],float salary,int sector)
-{
-return -1;
-}
+int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char lastName[],float salary,int sector);
+
+void CreateAnEmployee(Employee [], int len);
+int SearchForAvailableSpace(Employee [], int);
+

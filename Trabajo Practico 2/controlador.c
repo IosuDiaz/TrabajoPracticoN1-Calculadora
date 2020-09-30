@@ -3,6 +3,7 @@
 #include <string.h>
 #include "controlador.h"
 
+
 //validar
 void Menu(char selectedOption[])
 {
@@ -47,3 +48,17 @@ int MappingChosenOption(char selectedOption[])
     }
     return mappingSelectedOption;
 }
+int CalculateEmployeeId(int id)
+{
+    static int maxId=-1;
+
+    if(id<0)
+    {
+        maxId++;
+        id=maxId;
+    }
+
+    return id;
+}
+
+
