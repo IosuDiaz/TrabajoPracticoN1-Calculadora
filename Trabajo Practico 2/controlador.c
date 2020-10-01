@@ -48,6 +48,21 @@ int MappingChosenOption(char selectedOption[])
     }
     return mappingSelectedOption;
 }
+
+int isOnlyLetters(char str[])
+{
+   int i=0;
+   while(str[i] != '\0')
+   {
+       if((str[i] != ' ') && (str[i] < 'a' || str[i] > 'z') && (str[i] < 'A' || str[i] > 'Z'))
+       {
+           return 0;
+       }
+       i++;
+   }
+   return 1;
+}
+
 int CalculateEmployeeId(int id)
 {
     static int maxId=-1;

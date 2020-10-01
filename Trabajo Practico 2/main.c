@@ -28,10 +28,12 @@ int main()
             //ALTA
             case 1:
                 CreateAnEmployee(rosterOfEmployees,DIM);
+                ShowListOfEmployees(rosterOfEmployees,DIM);
                 break;
             //MODIFICAR
             case 2:
-
+                ModifyAnEmployeeById(rosterOfEmployees,DIM);
+                ShowListOfEmployees(rosterOfEmployees,DIM);
                 break;
             //BAJA
             case 3:
@@ -43,8 +45,7 @@ int main()
                 break;
 
         }
-    }
-    while(mappedOption==1);
+    }while(mappedOption!=4);
 
     return 0;
 }

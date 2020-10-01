@@ -37,4 +37,19 @@ int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char la
 
 void CreateAnEmployee(Employee [], int len);
 int SearchForAvailableSpace(Employee [], int);
+void ModifyAnEmployeeById(Employee [], int);
+void ShowListOfEmployees(Employee [], int);
+void ShowAnEmployee(Employee);
 
+
+
+/** \brief find an Employee by Id en returns the index position in array.
+*
+* \param list Employee*
+* \param len int
+* \param id int
+* \return Return employee index position or (-1) if [Invalid length or NULL
+pointer received or employee not found]
+*
+*/
+int findEmployeeById(Employee listOfEmployees[], int len, int id);
