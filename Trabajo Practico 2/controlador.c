@@ -211,50 +211,24 @@ int getValidString(char requestMessage[],char errorMessage[], char errorMessageL
 }
 
 //validar
-void Menu(char selectedOption[])
+int Menu()
 {
+    int selectedOption;
+    int validOption;
     //preguntar si el menu es con PALABRAS O NUMEROS
-    printf("\nIngrese ALTAS para cargar un empleado");
-    printf("\nIngrese MODIFICAR para cambiar los datos de un empleado");
-    printf("\nIngrese BAJA para eliminar un empleado de la base de datos");
-    printf("\nIngrese INFORMAR para ver el listado de empleados");
-    printf("\nSeleccione opcion: ");
-    scanf("%s",selectedOption);
-    strupr(selectedOption);
-}
+    printf("\n1 ALTAS");
+    printf("\n2 MODIFICAR");
+    printf("\n3 BAJA");
+    printf("\n4 INFORMAR");
+    printf("\n5 SALIR");
 
-int MappingChosenOption(char selectedOption[])
-{
-    int mappingSelectedOption;
-
-    if(strcmp(selectedOption,"ALTAS")==0)
+    do
     {
-        mappingSelectedOption=1;
-    }
-    else
-    {
-        if(strcmp(selectedOption,"MODIFICAR")==0)
-        {
-            mappingSelectedOption=2;
-        }
-        else
-        {
-            if(strcmp(selectedOption,"BAJA")==0)
-            {
-                mappingSelectedOption=3;
-            }
-            else
-            {
-                if(strcmp(selectedOption,"INFORMAR")==0)
-                {
-                    mappingSelectedOption=4;
-                }
-            }
-        }
-    }
-    return mappingSelectedOption;
-}
+        validOption=getValidInt("\nSeleccione opcion: ","Error. Tiene que un numero del 1 al 5.",&selectedOption,1,5,1);
+    }while (validOption=!-1);
 
+    return selectedOption;
+}
 
 
 int CalculateEmployeeId(void)

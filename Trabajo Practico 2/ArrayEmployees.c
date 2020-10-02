@@ -52,35 +52,33 @@ void CreateAnEmployee(Employee listOfEmployees[], int len)
     int validSalary;
     int validSector;
 
-    validName=getValidString("\nIngrese el nombre: ","\nError. El nombre solo puede contener letras o espacios", "\nError. El largo del nombre tiene que ser como maximo 50",name,50,1);
-    while(validName==-1)
+    do
     {
         validName=getValidString("\nIngrese el nombre: ","\nError. El nombre solo puede contener letras o espacios", "\nError. El largo del nombre tiene que ser como maximo 50",name,50,1);
-    }
 
-    validLastName=getValidString("\nIngrese el apellido: ","\nError. El apellido solo puede contener letras o espacios", "\nError. El largo del apellido tiene que ser como maximo 50",lastName,50,1);
-    while(validLastName==-1)
+    }while(validName==-1);
+
+    do
     {
         validLastName=getValidString("\nIngrese el apellido: ","\nError. El apellido solo puede contener letras o espacios", "\nError. El largo del apellido tiene que ser como maximo 50",lastName,50,1);
-    }
 
-    validSalary=getValidFloat("\nIngrese el salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&salary,0,200000,1);
-    while(validSalary==-1)
+    }while(validLastName==-1);
+
+    do
     {
         validSalary=getValidFloat("\nIngrese el salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&salary,0,200000,1);
-    }
 
-    validSector=getValidInt("\nIngrese sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&sector,0,100,1);
-    while(validSector==-1)
+    }while(validSalary==-1);
+
+    do
     {
         validSector=getValidInt("\nIngrese sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&sector,0,100,1);
-    }
 
+    }while(validSector==-1);
 
     id=CalculateEmployeeId();
 
     addEmployee(listOfEmployees,len,id,name,lastName,salary,sector);
-
 }
 
 int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char lastName[],float salary,int sector)
@@ -184,34 +182,30 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
         //Evalua respues del sub menu
         switch(variableToModify)
         {
-        case 1:
-            validAuxName=getValidString("\nIngrese el nuevo nombre: ","\nError. El nombre solo puede contener letras o espacios", "Error. El largo del nombre tiene que ser como maximo 50",auxName,50,1);
-            while(validAuxName==-1)
-            {
-                validAuxName=getValidString("\nIngrese el nuevo nombre: ","\nError. El nombre solo puede contener letras o espacios", "Error. El largo del nombre tiene que ser como maximo 50",auxName,50,1);
-            }
-            break;
-        case 2:
-            validAuxLastName=getValidString("\nIngrese el nuevo apellido: ","\nError. El apellido solo puede contener letras o espacios", "Error. El largo del apellido tiene que ser como maximo 50",auxLastName,50,1);
-            while(validAuxLastName==-1)
-            {
-                validAuxLastName=getValidString("\nIngrese el nuevo apellido: ","\nError. El apellido solo puede contener letras o espacios", "Error. El largo del apellido tiene que ser como maximo 50",auxLastName,50,1);
-            }
-            break;
-        case 3:
-            validAuxSalary=getValidFloat("\nIngrese el nuevo salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSalary,0,200000,1);
-            while(validAuxSalary==-1)
-            {
-                validAuxSalary=getValidFloat("\nIngrese el nuevo salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSalary,0,200000,1);
-            }
-            break;
-        case 4:
-            validAuxSector=getValidInt("\nIngrese el nuevo sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSector,0,100,1);
-            while(validAuxSector==-1)
-            {
-                validAuxSector=getValidInt("\nIngrese el nuevo sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSector,0,100,1);
-            }
-            break;
+            case 1:
+                do
+                {
+                    validAuxName=getValidString("\nIngrese el nuevo nombre: ","\nError. El nombre solo puede contener letras o espacios", "Error. El largo del nombre tiene que ser como maximo 50",auxName,50,1);
+                }while(validAuxName==-1);
+                break;
+            case 2:
+                do
+                {
+                    validAuxLastName=getValidString("\nIngrese el nuevo apellido: ","\nError. El apellido solo puede contener letras o espacios", "Error. El largo del apellido tiene que ser como maximo 50",auxLastName,50,1);
+                }while(validAuxLastName==-1);
+                break;
+            case 3:
+                do
+                {
+                    validAuxSalary=getValidFloat("\nIngrese el nuevo salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSalary,0,200000,1);
+                }while(validAuxSalary==-1);
+                break;
+            case 4:
+                do
+                {
+                    validAuxSector=getValidInt("\nIngrese el nuevo sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSector,0,100,1);
+                }while(validAuxSector==-1);
+                break;
         }
 
         //Pregunta si quiere cambiar el dato
@@ -234,20 +228,20 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
             //Guarda en el indice del empleado el cambio a efectuar
             switch(variableToModify)
             {
-            case 1:
-                strcpy(listOfEmployees[indexOfEmployee].name,auxName);
-                break;
-            case 2:
-                strcpy(listOfEmployees[indexOfEmployee].lastName,auxLastName);
-                break;
-            case 3:
-                listOfEmployees[indexOfEmployee].salary=auxSalary;
-                break;
-            case 4:
-                listOfEmployees[indexOfEmployee].sector=auxSector;
-                break;
-                printf("\nSe han guardado los cambios.");
+                case 1:
+                    strcpy(listOfEmployees[indexOfEmployee].name,auxName);
+                    break;
+                case 2:
+                    strcpy(listOfEmployees[indexOfEmployee].lastName,auxLastName);
+                    break;
+                case 3:
+                    listOfEmployees[indexOfEmployee].salary=auxSalary;
+                    break;
+                case 4:
+                    listOfEmployees[indexOfEmployee].sector=auxSector;
+                    break;
             }
+            printf("\nSe han guardado los cambios.");
         }
         else
         {
@@ -333,10 +327,8 @@ int sortEmployees(Employee listOfEmployees[], int len, int order)
         for(j=i+1;j<len;j++)
         {
 
-            //if(((order) && (strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==1)) ||
-               //((order) && ((strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==0) && (listOfEmployees[i].sector > listOfEmployees[j].sector))))
-            if(((order) && (listOfEmployees[i].sector > listOfEmployees[j].sector)) ||
-               ((order) && ((listOfEmployees[i].sector == listOfEmployees[j].sector) && (strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==1))))
+            if(((order) && (strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==1)) ||
+            ((order) && ((strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==0) && (listOfEmployees[i].sector > listOfEmployees[j].sector))))
             {
                 auxEmployee=listOfEmployees[i];
                 listOfEmployees[i]=listOfEmployees[j];
@@ -361,11 +353,12 @@ int printEmployees(Employee listOfEmployees[], int len)
     int orderSelected;
     int validOrder;
 
-    validOrder=getValidInt("\nIngrese 1 para ordenar de manera ASCENDENTE o 0 para ordenar de manera DESCENDENTE","Error. La opcion ingresada no es valida",&orderSelected,0,1,1);
-    while(validOrder==-1)
+
+    do
     {
         validOrder=getValidInt("\nIngrese 1 para ordenar de manera ASCENDENTE o 0 para ordenar de manera DESCENDENTE","Error. La opcion ingresada no es valida",&orderSelected,0,1,1);
-    }
+    }while(validOrder==-1);
+
     sortEmployees(listOfEmployees,len,orderSelected);
 
     ShowListOfEmployees(listOfEmployees,len);

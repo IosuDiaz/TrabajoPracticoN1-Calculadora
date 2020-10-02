@@ -1,5 +1,4 @@
-void Menu(char []);
-int MappingChosenOption(char []);
+int Menu();
 int CalculateEmployeeId(void);
 
 
