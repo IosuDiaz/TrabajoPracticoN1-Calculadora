@@ -17,7 +17,7 @@ int initEmployees(Employee listOfEmployees[], int len)
         error=0;
         for(i=0; i<len; i++)
         {
-            listOfEmployees[i].isEmpty=FALSE;
+            listOfEmployees[i].isEmpty=TRUE;
         }
     }
 
@@ -31,7 +31,7 @@ int SearchForAvailableSpace(Employee listOfEmployees[], int len)
 
     for(i=0; i<len; i++)
     {
-        if(listOfEmployees[i].isEmpty==FALSE)
+        if(listOfEmployees[i].isEmpty==TRUE)
         {
             index=i;
             break;
@@ -47,43 +47,37 @@ void CreateAnEmployee(Employee listOfEmployees[], int len)
     float salary;
     int sector;
     int id;
+    int validName;
+    int validLastName;
+    int validSalary;
+    int validSector;
 
-    id=-1;
-
-    printf("\nIngrese el nombre: ");
-    fflush(stdin);
-    scanf("%s",name);
-    while(isOnlyLetters(name)==0)
+    validName=getValidString("\nIngrese el nombre: ","\nError. El nombre solo puede contener letras o espacios", "\nError. El largo del nombre tiene que ser como maximo 50",name,50,1);
+    while(validName==-1)
     {
-        printf("Error. El nombre solo puede contener letras o espacios");
-        scanf("%s",name);
+        validName=getValidString("\nIngrese el nombre: ","\nError. El nombre solo puede contener letras o espacios", "\nError. El largo del nombre tiene que ser como maximo 50",name,50,1);
     }
 
-    printf("\nIngrese el apellido: ");
-    fflush(stdin);
-    scanf("%s",lastName);
-    while(isOnlyLetters(lastName)==0)
+    validLastName=getValidString("\nIngrese el apellido: ","\nError. El apellido solo puede contener letras o espacios", "\nError. El largo del apellido tiene que ser como maximo 50",lastName,50,1);
+    while(validLastName==-1)
     {
-        printf("Error. El apellido solo puede contener letras o espacios");
-        scanf("%s",lastName);
+        validLastName=getValidString("\nIngrese el apellido: ","\nError. El apellido solo puede contener letras o espacios", "\nError. El largo del apellido tiene que ser como maximo 50",lastName,50,1);
     }
 
-    printf("\nIngrese el salario: ");
-    scanf("%f",&salary);
-    //while()
-    //{
+    validSalary=getValidFloat("\nIngrese el salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&salary,0,200000,1);
+    while(validSalary==-1)
+    {
+        validSalary=getValidFloat("\nIngrese el salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&salary,0,200000,1);
+    }
 
-    //}
-
-    printf("\nIngrese sector: ");
-    scanf("%d",&sector);
-    //while()
-    //{
-
-    //}
+    validSector=getValidInt("\nIngrese sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&sector,0,100,1);
+    while(validSector==-1)
+    {
+        validSector=getValidInt("\nIngrese sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&sector,0,100,1);
+    }
 
 
-    id=CalculateEmployeeId(id);
+    id=CalculateEmployeeId();
 
     addEmployee(listOfEmployees,len,id,name,lastName,salary,sector);
 
@@ -100,12 +94,12 @@ int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char la
     {
         availableIndex=SearchForAvailableSpace(listOfEmployees,len);
 
+        listOfEmployees[availableIndex].id=id;
         strcpy(listOfEmployees[availableIndex].name,name);
         strcpy(listOfEmployees[availableIndex].lastName,lastName);
         listOfEmployees[availableIndex].salary=salary;
         listOfEmployees[availableIndex].sector=sector;
-        listOfEmployees[availableIndex].id=id;
-        listOfEmployees[availableIndex].isEmpty=TRUE;
+        listOfEmployees[availableIndex].isEmpty=FALSE;
         ifError=0;
     }
 
@@ -114,16 +108,16 @@ int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char la
 
 void ShowAnEmployee(Employee anEmployee)
 {
-    printf("%1d %10s %10s %10.2f %10d\n",anEmployee.id,anEmployee.name,anEmployee.lastName,anEmployee.salary,anEmployee.sector);
+    printf("\n%4d %17s %17s %17.2f %17d",anEmployee.id,anEmployee.name,anEmployee.lastName,anEmployee.salary,anEmployee.sector);
 }
 
 void ShowListOfEmployees(Employee listOfEmployees[], int len)
 {
     int i;
-    printf("%s %10s %10s %10s %10s\n","ID","NOMBRE","APELLIDO","SALARIO","SECTOR");
-    for(i=0; i<len; i++)
+    printf("\n%4s %17s %17s %17s %17s","ID","NOMBRE","APELLIDO","SALARIO","SECTOR");
+    for(i=0;i<len;i++)
     {
-        if(listOfEmployees[i].isEmpty==TRUE)
+        if(listOfEmployees[i].isEmpty==FALSE)
         {
             ShowAnEmployee(listOfEmployees[i]);
         }
@@ -139,7 +133,7 @@ int findEmployeeById(Employee listOfEmployees[], int len, int id)
 
     for(i=0; i<len; i++)
     {
-        if(listOfEmployees[i].id==id)
+        if(listOfEmployees[i].id==id && listOfEmployees[i].isEmpty==FALSE)
         {
             index=i;
             break;
@@ -157,82 +151,89 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
     char auxLastName[51];
     float auxSalary;
     int auxSector;
-    char confirmation[2];
-
+    char confirmation[3];
+    int validAuxName;
+    int validAuxLastName;
+    int validAuxSalary;
+    int validAuxSector;
     //Muestra lista de empleados
     ShowListOfEmployees(listOfEmployees,len);
 
     //Pide el ID que quiere cambiar
-    printf("\nIngrese el ID del empleado al que quiere modificar: ");
-    fflush(stdin);
-    scanf("%d",&idToModify);
+    idToModify=getInt("\nIngrese el ID del empleado al que quiere modificar: ");
 
     //Busca el indice del empleado a cambiar
     indexOfEmployee=findEmployeeById(listOfEmployees,len,idToModify);
 
-    //Pregunta que dato del empleado quiere cambiar
-    printf("\nIngrese 1 para modificar el NOMBRE");
-    printf("\nIngrese 2 para modificar el APELLIDO");
-    printf("\nIngrese 3 para modificar el SALARIO");
-    printf("\nIngrese 4 para modificar el SECTOR");
-    printf("\nIngrese opcion: ");
-    fflush(stdin);
-    scanf("%d",&variableToModify);
-
-    //Validacion del sub menu
-    while(variableToModify!=1 && variableToModify!=2 && variableToModify!=3 && variableToModify!=4)
+    if(indexOfEmployee!=-1)
     {
-        printf("\nError. La opcion ingresada no coincide con las disponibles ");
-        fflush(stdin);
-        scanf("%d",&variableToModify);
-    }
 
-    //Evalua respues del sub menu
-    switch(variableToModify)
-    {
-        case 1:
-            printf("\nIngrese el nuevo NOMBRE: ");
-            fflush(stdin);
-            scanf("%s",auxName);
-            break;
-        case 2:
-            printf("\nIngrese el nuevo APELLIDO: ");
-            fflush(stdin);
-            scanf("%s",auxLastName);
-            break;
-        case 3:
-            printf("\nIngrese el nuevo SALARIO: ");
-            scanf("%f",&auxSalary);
-            break;
-        case 4:
-            printf("\nIngrese el nuevo SECTOR: ");
-            scanf("%d",&auxSector);
-            break;
-    }
+        //Pregunta que dato del empleado quiere cambiar
+        printf("\nIngrese 1 para modificar el NOMBRE");
+        printf("\nIngrese 2 para modificar el APELLIDO");
+        printf("\nIngrese 3 para modificar el SALARIO");
+        printf("\nIngrese 4 para modificar el SECTOR");
+        variableToModify=getInt("\nIngrese opcion: ");
 
-    //Pregunta si quiere cambiar el dato
-    printf("\nEsta seguro que desea cambiar el dato?");
-    printf("\nSI para guardar.");
-    printf("\nNO para cancerlar.");
-    fflush(stdin);
-    scanf("%s",confirmation);
-    strupr(confirmation);
+        //Validacion del sub menu
+        while(variableToModify!=1 && variableToModify!=2 && variableToModify!=3 && variableToModify!=4)
+        {
+            getValidInt("\nLa opcion ingresada tiene que estar entre 1 y 4 ","\nError. Vuelva a intentarlo ",&variableToModify,1,4,1);
+        }
 
-    //Valida respuesta de la confirmacion
-    while(strcmp(confirmation,"SI")!=0 && strcmp(confirmation,"NO")!=0)
-    {
-        printf("\nError. Tiene que ingresar SI o NO. ");
-        fflush(stdin);
-        scanf("%s",confirmation);
-        strupr(confirmation);
-    }
-
-    //Evalua respuesta de la confirmacion
-    if(strcmp(confirmation,"SI")==0)
-    {
-        //Guarda en el indice del empleado el cambio a efectuar
+        //Evalua respues del sub menu
         switch(variableToModify)
         {
+        case 1:
+            validAuxName=getValidString("\nIngrese el nuevo nombre: ","\nError. El nombre solo puede contener letras o espacios", "Error. El largo del nombre tiene que ser como maximo 50",auxName,50,1);
+            while(validAuxName==-1)
+            {
+                validAuxName=getValidString("\nIngrese el nuevo nombre: ","\nError. El nombre solo puede contener letras o espacios", "Error. El largo del nombre tiene que ser como maximo 50",auxName,50,1);
+            }
+            break;
+        case 2:
+            validAuxLastName=getValidString("\nIngrese el nuevo apellido: ","\nError. El apellido solo puede contener letras o espacios", "Error. El largo del apellido tiene que ser como maximo 50",auxLastName,50,1);
+            while(validAuxLastName==-1)
+            {
+                validAuxLastName=getValidString("\nIngrese el nuevo apellido: ","\nError. El apellido solo puede contener letras o espacios", "Error. El largo del apellido tiene que ser como maximo 50",auxLastName,50,1);
+            }
+            break;
+        case 3:
+            validAuxSalary=getValidFloat("\nIngrese el nuevo salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSalary,0,200000,1);
+            while(validAuxSalary==-1)
+            {
+                validAuxSalary=getValidFloat("\nIngrese el nuevo salario: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSalary,0,200000,1);
+            }
+            break;
+        case 4:
+            validAuxSector=getValidInt("\nIngrese el nuevo sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSector,0,100,1);
+            while(validAuxSector==-1)
+            {
+                validAuxSector=getValidInt("\nIngrese el nuevo sector: ","\nError. El dato ingresado no es valido. Vuelva a intentarlo ",&auxSector,0,100,1);
+            }
+            break;
+        }
+
+        //Pregunta si quiere cambiar el dato
+        printf("\nConfirmacion de cambios");
+        printf("\nSI para GUARDAR.");
+        printf("\nNO para CANCELAR.");
+        getString("\nEsta seguro que desea CAMBIAR el dato? ",confirmation);
+        strupr(confirmation);
+
+        //Valida respuesta de la confirmacion
+        while(strcmp(confirmation,"SI")!=0 && strcmp(confirmation,"NO")!=0)
+        {
+            getString("\nError. Debe ingresar SI o NO: ",confirmation);
+            strupr(confirmation);
+        }
+
+        //Evalua respuesta de la confirmacion
+        if(strcmp(confirmation,"SI")==0)
+        {
+            //Guarda en el indice del empleado el cambio a efectuar
+            switch(variableToModify)
+            {
             case 1:
                 strcpy(listOfEmployees[indexOfEmployee].name,auxName);
                 break;
@@ -245,11 +246,207 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
             case 4:
                 listOfEmployees[indexOfEmployee].sector=auxSector;
                 break;
-            printf("\nSe han guardado los cambios.");
+                printf("\nSe han guardado los cambios.");
+            }
+        }
+        else
+        {
+            printf("\nNo se han guardado los cambios.");
         }
     }
     else
     {
-        printf("\nNo se han guardado los cambios.");
+        printf("\nNo se ha encontrado ningun empleado con ese ID.");
     }
+}
+
+void SelectEmployeeToRemove(Employee listOfEmployees[], int len)
+{
+    int idToDelete;
+    int indexOfEmployee;
+    char confirmation[3];
+
+    ShowListOfEmployees(listOfEmployees,len);
+
+    getValidInt("\nIngrese el numero del id que quiere borrar: ","\nError. El dato ingresado es invalido. Vuelva a intentarlo. ",&idToDelete,0,1000,1);
+
+    indexOfEmployee=findEmployeeById(listOfEmployees,len,idToDelete);
+
+
+    if(indexOfEmployee!=-1)
+    {
+        printf("\nConfirmacion de cambios:");
+        printf("\nSI para BORRAR.");
+        printf("\nNO para CANCELAR.");
+        getString("\nEsta seguro que desea BORRAR el dato? ",confirmation);
+
+        strupr(confirmation);
+
+        while(strcmp(confirmation,"SI")!=0 && strcmp(confirmation,"NO")!=0)
+        {
+            getString("\nError. Debe ingresar SI o NO ",confirmation);
+            strupr(confirmation);
+        }
+
+        if(removeEmployee(listOfEmployees,len,idToDelete)==0)
+        {
+            printf("\nSe ha borrado el empleado correctamente.");
+        }
+        else
+        {
+            printf("\nNo se pudo borrar al empleado.");
+        }
+    }
+    else
+    {
+        printf("\nNo se ha encontrado ningun empleado con ese ID.");
+    }
+}
+
+int removeEmployee(Employee listOfEmployees[], int len, int id)
+{
+    int i;
+    int ifError;
+
+    ifError=-1;
+
+    for(i=0;i<len;i++)
+    {
+        if(listOfEmployees[i].id==id)
+        {
+            listOfEmployees[i].isEmpty=TRUE;
+            ifError=0;
+            break;
+        }
+    }
+    return ifError;
+}
+
+int sortEmployees(Employee listOfEmployees[], int len, int order)
+{
+    int i;
+    int j;
+    Employee auxEmployee;
+
+    for(i=0;i<len-1;i++)
+    {
+        for(j=i+1;j<len;j++)
+        {
+
+            //if(((order) && (strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==1)) ||
+               //((order) && ((strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==0) && (listOfEmployees[i].sector > listOfEmployees[j].sector))))
+            if(((order) && (listOfEmployees[i].sector > listOfEmployees[j].sector)) ||
+               ((order) && ((listOfEmployees[i].sector == listOfEmployees[j].sector) && (strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==1))))
+            {
+                auxEmployee=listOfEmployees[i];
+                listOfEmployees[i]=listOfEmployees[j];
+                listOfEmployees[j]=auxEmployee;
+            }
+            if(((order==0) && (strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==-1)) ||
+               ((order==0) && ((strcmp(listOfEmployees[i].lastName,listOfEmployees[j].lastName)==0) && (listOfEmployees[i].sector < listOfEmployees[j].sector))))
+            {
+                auxEmployee=listOfEmployees[i];
+                listOfEmployees[i]=listOfEmployees[j];
+                listOfEmployees[j]=auxEmployee;
+            }
+        }
+    }
+    return 0;
+}
+
+
+
+int printEmployees(Employee listOfEmployees[], int len)
+{
+    int orderSelected;
+    int validOrder;
+
+    validOrder=getValidInt("\nIngrese 1 para ordenar de manera ASCENDENTE o 0 para ordenar de manera DESCENDENTE","Error. La opcion ingresada no es valida",&orderSelected,0,1,1);
+    while(validOrder==-1)
+    {
+        validOrder=getValidInt("\nIngrese 1 para ordenar de manera ASCENDENTE o 0 para ordenar de manera DESCENDENTE","Error. La opcion ingresada no es valida",&orderSelected,0,1,1);
+    }
+    sortEmployees(listOfEmployees,len,orderSelected);
+
+    ShowListOfEmployees(listOfEmployees,len);
+
+    return 0;
+}
+
+int amountOfPaychecks(Employee listOfEmployees[], int len)
+{
+    int i;
+    int counterOfPayChecks=0;
+
+    for(i=0;i<len;i++)
+    {
+        if(listOfEmployees[i].isEmpty==FALSE)
+        {
+            counterOfPayChecks++;
+        }
+    }
+
+    return counterOfPayChecks;
+}
+
+int sumOfSalaries(Employee listOfEmployees[], int len)
+{
+    int i;
+    int sumOfPayChecks=0;
+
+
+    for(i=0;i<len;i++)
+    {
+        if(listOfEmployees[i].isEmpty==FALSE)
+        {
+            sumOfPayChecks+=listOfEmployees[i].salary;
+        }
+    }
+    return sumOfPayChecks;
+}
+
+
+float averageSalary(Employee listOfEmployees[], int len)
+{
+    float averagePayCheck;
+
+    averagePayCheck=sumOfSalaries(listOfEmployees,len) / amountOfPaychecks(listOfEmployees,len);
+
+    return averagePayCheck;
+}
+
+int amountOfPayChecksAboveTheAverage(Employee listOfEmployees[], int len)
+{
+    int i;
+    int counterOfPayChecksAboveTheAverage=0;
+    float averagePayCheck;
+
+    averagePayCheck=averageSalary(listOfEmployees,len);
+
+    for(i=0;i<len;i++)
+    {
+        if(listOfEmployees[i].salary>averagePayCheck && listOfEmployees[i].isEmpty==FALSE)
+        {
+            counterOfPayChecksAboveTheAverage++;
+        }
+    }
+    return counterOfPayChecksAboveTheAverage;
+}
+
+void informDataOfPaychecks(Employee listOfEmployees[], int len)
+{
+    int counterOfPayChecks;
+    float averagePayCheck;
+    int sumOfPayChecks;
+    int counterOfPayChecksAboveTheAverage;
+
+    sumOfPayChecks=sumOfSalaries(listOfEmployees,len);
+    averagePayCheck=averageSalary(listOfEmployees,len);
+    counterOfPayChecks=amountOfPaychecks(listOfEmployees,len);
+    counterOfPayChecksAboveTheAverage=amountOfPayChecksAboveTheAverage(listOfEmployees,len);
+
+    printf("\nLa suma de los salarios es: %d",sumOfPayChecks);
+    printf("\nEl promedio de los salarios es: %f",averagePayCheck);
+    printf("\nLa cantidad de salarios es: %d",counterOfPayChecks);
+    printf("\nLa cantidad de salarios por encima de el salario promedio es: %d",counterOfPayChecksAboveTheAverage);
 }

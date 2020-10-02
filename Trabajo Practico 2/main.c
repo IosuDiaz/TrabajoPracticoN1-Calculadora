@@ -4,7 +4,7 @@
 #include "controlador.h"
 #include "ArrayEmployees.h"
 
-#define DIM 10
+#define DIM 500
 
 int main()
 {
@@ -15,37 +15,48 @@ int main()
 
     //INICIALIZAR EMPLEADOS
     resultOfInit=initEmployees(rosterOfEmployees,DIM);
-    do
+
+    if(resultOfInit==-1)
     {
-        //MENU
-        Menu(chosenOption);
-        //MAPEO DE OPCIONES
-        mappedOption=MappingChosenOption(chosenOption);
-        //printf("%d",resultOfInit);
-
-        switch(mappedOption)
+        system("color 17");
+        printf("Error al inicializar la base de datos.\nPuede empezar a cargar la nomina de empleados.");
+    }
+    else
+    {
+        printf("Se inicializo correctamente la base de datos.\nPuede empezar a cargar la nomina de empleados.");
+        do
         {
-            //ALTA
-            case 1:
-                CreateAnEmployee(rosterOfEmployees,DIM);
-                ShowListOfEmployees(rosterOfEmployees,DIM);
-                break;
-            //MODIFICAR
-            case 2:
-                ModifyAnEmployeeById(rosterOfEmployees,DIM);
-                ShowListOfEmployees(rosterOfEmployees,DIM);
-                break;
-            //BAJA
-            case 3:
+            //MENU
+            Menu(chosenOption);
+            //MAPEO DE OPCIONES
+            mappedOption=MappingChosenOption(chosenOption);
 
-                break;
-            //INFORMAR
-            case 4:
+            switch(mappedOption)
+            {
+                //ALTA
+                case 1:
+                    CreateAnEmployee(rosterOfEmployees,DIM);
+                    //ShowListOfEmployees(rosterOfEmployees,DIM);
+                    break;
+                //MODIFICAR
+                case 2:
+                    ModifyAnEmployeeById(rosterOfEmployees,DIM);
+                    //ShowListOfEmployees(rosterOfEmployees,DIM);
+                    break;
+                //BAJA
+                case 3:
+                    SelectEmployeeToRemove(rosterOfEmployees,DIM);
+                    //ShowListOfEmployees(rosterOfEmployees,DIM);
+                    break;
+                //INFORMAR
+                case 4:
+                    printEmployees(rosterOfEmployees,DIM);
+                    informDataOfPaychecks(rosterOfEmployees,DIM);
+                    break;
 
-                break;
-
+                }
         }
-    }while(mappedOption!=4);
-
+        while(mappedOption!=4);
+    }
     return 0;
 }

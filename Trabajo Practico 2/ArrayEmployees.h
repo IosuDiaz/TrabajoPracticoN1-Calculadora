@@ -53,3 +53,44 @@ pointer received or employee not found]
 *
 */
 int findEmployeeById(Employee listOfEmployees[], int len, int id);
+
+/** \brief Remove a Employee by Id (put isEmpty Flag in 1)
+*
+* \param list Employee*
+* \param len int
+* \param id int
+* \return int Return (-1) if Error [Invalid length or NULL pointer or if can't
+find a employee] - (0) if Ok
+*
+*/
+int removeEmployee(Employee listOfEmployees[], int len, int id);
+
+void SelectEmployeeToRemove(Employee listOfEmployees[], int len);
+
+/** \brief Sort the elements in the array of employees, the argument order
+indicate UP or DOWN order
+*
+* \param list Employee*
+* \param len int
+* \param order int [1] indicate UP - [0] indicate DOWN
+* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*
+*/
+int sortEmployees(Employee listOfEmployees[], int len, int order);
+
+/** \brief print the content of employees array
+*
+* \param list Employee*
+* \param length int
+* \return int
+*
+*/
+int printEmployees(Employee listOfEmployees[], int len);
+
+float averageSalary(Employee listOfEmployees[], int len);
+int sumOfSalaries(Employee listOfEmployees[], int len);
+int amountOfPaychecks(Employee listOfEmployees[], int len);
+int amountOfPayChecksAboveTheAverage(Employee listOfEmployees[], int len);
+void informDataOfPaychecks(Employee listOfEmployees[], int len);
+
+
