@@ -1,10 +1,18 @@
+/******************************************************************************
+Iosu Fermin Diaz
+Segundo Trabajo Practico
+UTN Laboratorio 1
+
+*******************************************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "controlador.h"
 #include "ArrayEmployees.h"
 
-#define DIM 500
+#define DIM 100
 
 int main()
 {
@@ -12,30 +20,33 @@ int main()
     int chosenOption;
     int resultOfInit;
     int flagFirstOption=0;
-    char exitConfirmation[3];
+    char exitConfirmation[3]={"NO"};
 
-
-    //INICIALIZACION EMPLEADOS
+    //Inicializacion de empleados
     resultOfInit=initEmployees(rosterOfEmployees,DIM);
     //Evalua si se inicializaron las posiciones del array de empleados
     if(resultOfInit==-1)
     {
         system("color 17");
-        printf("Error al inicializar la base de datos.\nPuede empezar a cargar la nomina de empleados.");
+        printf("Error al inicializar la base de datos.");
     }
     else
     {
-        printf("Se inicializo correctamente la base de datos.\nPuede empezar a cargar la nomina de empleados.");
+        printf("Se inicializo correctamente la base de datos.\nPuede empezar a cargar la nomina de empleados.\n\n");
+
         do
         {
             //Menu
             chosenOption=Menu();
+            system("pause");
+            system("cls");
             //Evalua
             switch(chosenOption)
             {
                 //ALTA
                 case 1:
                     CreateAnEmployee(rosterOfEmployees,DIM);
+                    system("cls");
                     flagFirstOption=1;
                     break;
                 //MODIFICAR
@@ -43,10 +54,14 @@ int main()
                     if(flagFirstOption)
                     {
                         ModifyAnEmployeeById(rosterOfEmployees,DIM);
+                        system("pause");
+                        system("cls");
                     }
                     else
                     {
-                        printf("\nNo se puede modificar. Primero hay que cargar al menos un empleado");
+                        printf("No se puede modificar. Primero hay que cargar al menos un empleado\n");
+                        system("pause");
+                        system("cls");
                     }
 
                     break;
@@ -55,10 +70,14 @@ int main()
                     if(flagFirstOption)
                     {
                         SelectEmployeeToRemove(rosterOfEmployees,DIM);
+                        system("pause");
+                        system("cls");
                     }
                     else
                     {
-                        printf("\nNo se puede modificar. Primero hay que cargar al menos un empleado");
+                        printf("\nNo se puede modificar. Primero hay que cargar al menos un empleado\n");
+                        system("pause");
+                        system("cls");
                     }
                     break;
                 //INFORMAR
@@ -67,25 +86,31 @@ int main()
                     {
                         printEmployees(rosterOfEmployees,DIM);
                         informDataOfPaychecks(rosterOfEmployees,DIM);
+                        system("pause");
+                        system("cls");
                     }
                     else
                     {
                         printf("\nNo se puede modificar. Primero hay que cargar al menos un empleado");
+                        system("pause");
+                        system("cls");
                     }
                     break;
                 case 5:
 
-                    getString("\nEsta seguro que desea CAMBIAR el dato? ",exitConfirmation);
+                    getString("\nEsta seguro que desea SALIR? \nSI para salir \nNO para cancelar ",exitConfirmation);
                     strupr(exitConfirmation);
+                    system("cls");
                     while(strcmp(exitConfirmation,"SI")!=0 && strcmp(exitConfirmation,"NO")!=0)
                     {
                         getString("\nError. Debe ingresar SI o NO: ",exitConfirmation);
                         strupr(exitConfirmation);
+                        system("cls");
                     }
                     break;
                 }
         }
-        while(chosenOption!=5);
+        while(strcmp(exitConfirmation,"SI")!=0);
     }
     return 0;
 }

@@ -106,13 +106,13 @@ int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char la
 
 void ShowAnEmployee(Employee anEmployee)
 {
-    printf("\n%4d %17s %17s %17.2f %17d",anEmployee.id,anEmployee.name,anEmployee.lastName,anEmployee.salary,anEmployee.sector);
+    printf("\n%3d %17s %16s %18.2f %16d",anEmployee.id,anEmployee.name,anEmployee.lastName,anEmployee.salary,anEmployee.sector);
 }
 
 void ShowListOfEmployees(Employee listOfEmployees[], int len)
 {
     int i;
-    printf("\n%4s %17s %17s %17s %17s","ID","NOMBRE","APELLIDO","SALARIO","SECTOR");
+    printf("\n%4s %16s %17s %18s %17s","ID","NOMBRE","APELLIDO","SALARIO","SECTOR");
     for(i=0;i<len;i++)
     {
         if(listOfEmployees[i].isEmpty==FALSE)
@@ -158,7 +158,7 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
     ShowListOfEmployees(listOfEmployees,len);
 
     //Pide el ID que quiere cambiar
-    idToModify=getInt("\nIngrese el ID del empleado al que quiere modificar: ");
+    idToModify=getInt("\n\n\nIngrese el ID del empleado al que quiere modificar: ");
 
     //Busca el indice del empleado a cambiar
     indexOfEmployee=findEmployeeById(listOfEmployees,len,idToModify);
@@ -212,7 +212,7 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
         printf("\nConfirmacion de cambios");
         printf("\nSI para GUARDAR.");
         printf("\nNO para CANCELAR.");
-        getString("\nEsta seguro que desea CAMBIAR el dato? ",confirmation);
+        getString("\n\nEsta seguro que desea CAMBIAR el dato? ",confirmation);
         strupr(confirmation);
 
         //Valida respuesta de la confirmacion
@@ -241,16 +241,16 @@ void ModifyAnEmployeeById(Employee listOfEmployees[], int len)
                     listOfEmployees[indexOfEmployee].sector=auxSector;
                     break;
             }
-            printf("\nSe han guardado los cambios.");
+            printf("\nSe han guardado los cambios.\n");
         }
         else
         {
-            printf("\nNo se han guardado los cambios.");
+            printf("\nNo se han guardado los cambios.\n");
         }
     }
     else
     {
-        printf("\nNo se ha encontrado ningun empleado con ese ID.");
+        printf("\nNo se ha encontrado ningun empleado con ese ID.\n");
     }
 }
 
@@ -262,7 +262,7 @@ void SelectEmployeeToRemove(Employee listOfEmployees[], int len)
 
     ShowListOfEmployees(listOfEmployees,len);
 
-    getValidInt("\nIngrese el numero del id que quiere borrar: ","\nError. El dato ingresado es invalido. Vuelva a intentarlo. ",&idToDelete,0,1000,1);
+    getValidInt("\n\n\nIngrese el numero del id que quiere borrar: ","\nError. El dato ingresado es invalido. Vuelva a intentarlo. ",&idToDelete,0,1000,1);
 
     indexOfEmployee=findEmployeeById(listOfEmployees,len,idToDelete);
 

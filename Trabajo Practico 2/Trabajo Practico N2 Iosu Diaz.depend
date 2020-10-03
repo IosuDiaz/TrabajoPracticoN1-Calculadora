@@ -20,15 +20,15 @@
 
 1601244216 c:\users\user\desktop\utn\programación\trabajo practico n2 iosu diaz\controlador.h
 
-1601662285 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\controlador.c
+1601692675 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\controlador.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"controlador.h"
 
-1601661607 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\controlador.h
+1601691379 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\controlador.h
 
-1601665864 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\arrayemployees.c
+1601693144 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -36,9 +36,9 @@
 	"ArrayEmployees.h"
 	"controlador.h"
 
-1601610723 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\arrayemployees.h
+1601691379 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\arrayemployees.h
 
-1601666534 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\main.c
+1601693583 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

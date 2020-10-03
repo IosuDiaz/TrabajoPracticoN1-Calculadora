@@ -1,4 +1,16 @@
+/** \brief shows the menu
+ *
+ * \return int Return the selected option
+ *
+ */
 int Menu();
+
+/** \brief generates an Id automatically
+ *
+ * \param void
+ * \return int
+ *
+ */
 int CalculateEmployeeId(void);
 
 

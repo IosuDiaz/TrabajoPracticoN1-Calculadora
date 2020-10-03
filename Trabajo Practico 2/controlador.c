@@ -215,7 +215,7 @@ int Menu()
 {
     int selectedOption;
     int validOption;
-    //preguntar si el menu es con PALABRAS O NUMEROS
+
     printf("\n1 ALTAS");
     printf("\n2 MODIFICAR");
     printf("\n3 BAJA");
@@ -224,8 +224,9 @@ int Menu()
 
     do
     {
-        validOption=getValidInt("\nSeleccione opcion: ","Error. Tiene que un numero del 1 al 5.",&selectedOption,1,5,1);
-    }while (validOption=!-1);
+        validOption=getValidInt("\nSeleccione opcion: ","Error. Tiene que un numero del 1 al 5.\n",&selectedOption,1,5,1);
+
+    }while(validOption==-1);
 
     return selectedOption;
 }
@@ -233,7 +234,7 @@ int Menu()
 
 int CalculateEmployeeId(void)
 {
-    static int maxId=-1;
+    static int maxId=0;
     int id=-1;
     if(id<0)
     {

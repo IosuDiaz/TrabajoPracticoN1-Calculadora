@@ -35,10 +35,48 @@ int initEmployees(Employee listOfEmployees[], int len);
 */
 int addEmployee(Employee listOfEmployees[], int len, int id, char name[],char lastName[],float salary,int sector);
 
+/** \brief requests the information of the employee
+ *
+ * \param [] Employee
+ * \param len int
+ * \return void
+ *
+ */
 void CreateAnEmployee(Employee [], int len);
+
+/** \brief look for the first empty position and returns the index of that position
+ *
+ * \param [] Employee
+ * \param int
+ * \return int Return (-1) if Error - (0) if Ok
+ *
+ */
 int SearchForAvailableSpace(Employee [], int);
+
+/** \brief modificate an Employe by Id
+ *
+ * \param [] Employee
+ * \param int
+ * \return void
+ *
+ */
 void ModifyAnEmployeeById(Employee [], int);
+
+/** \brief shows the list of the employees only when the flag is false
+ *
+ * \param [] Employee
+ * \param int
+ * \return void
+ *
+ */
 void ShowListOfEmployees(Employee [], int);
+
+/** \brief shows an employee
+ *
+ * \param Employee
+ * \return void
+ *
+ */
 void ShowAnEmployee(Employee);
 
 
@@ -65,6 +103,13 @@ find a employee] - (0) if Ok
 */
 int removeEmployee(Employee listOfEmployees[], int len, int id);
 
+/** \brief requests the user to select the Id of the employee that will be removed
+ *
+ * \param listOfEmployees[] Employee
+ * \param len int
+ * \return void
+ *
+ */
 void SelectEmployeeToRemove(Employee listOfEmployees[], int len);
 
 /** \brief Sort the elements in the array of employees, the argument order
@@ -87,10 +132,49 @@ int sortEmployees(Employee listOfEmployees[], int len, int order);
 */
 int printEmployees(Employee listOfEmployees[], int len);
 
+/** \brief calculates the average salary of the employee list
+ *
+ * \param listOfEmployees[] Employee
+ * \param len int
+ * \return float Return the average salary
+ *
+ */
 float averageSalary(Employee listOfEmployees[], int len);
+
+/** \brief sums the salaries of all employees
+ *
+ * \param listOfEmployees[] Employee
+ * \param len int
+ * \return int Return the sum
+ *
+ */
 int sumOfSalaries(Employee listOfEmployees[], int len);
+
+/** \brief calculates the amount of salaries
+ *
+ * \param listOfEmployees[] Employee
+ * \param len int
+ * \return int
+ *
+ */
 int amountOfPaychecks(Employee listOfEmployees[], int len);
+
+/** \brief calculates the amount of salaries above average
+ *
+ * \param listOfEmployees[] Employee
+ * \param len int
+ * \return int
+ *
+ */
 int amountOfPayChecksAboveTheAverage(Employee listOfEmployees[], int len);
+
+/** \brief shows the information of the salaries
+ *
+ * \param listOfEmployees[] Employee
+ * \param len int
+ * \return void
+ *
+ */
 void informDataOfPaychecks(Employee listOfEmployees[], int len);
 
 
