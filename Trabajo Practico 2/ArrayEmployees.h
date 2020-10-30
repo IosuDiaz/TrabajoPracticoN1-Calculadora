@@ -79,8 +79,6 @@ void ShowListOfEmployees(Employee [], int);
  */
 void ShowAnEmployee(Employee);
 
-
-
 /** \brief find an Employee by Id en returns the index position in array.
 *
 * \param list Employee*

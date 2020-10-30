@@ -12,7 +12,7 @@ UTN Laboratorio 1
 #include "controlador.h"
 #include "ArrayEmployees.h"
 
-#define DIM 100
+#define DIM 1000
 
 int main()
 {
