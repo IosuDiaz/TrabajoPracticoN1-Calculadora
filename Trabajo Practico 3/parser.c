@@ -127,6 +127,7 @@ int parser_TextFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
 
     if(pFile!=NULL && pArrayListEmployee!=NULL && aux!=NULL)
     {
+        fprintf(pFile,"id,nombre,horasTrabajadas,sueldo\n");
         len=ll_len(pArrayListEmployee);
         for(i=0;i<len;i++)
         {
