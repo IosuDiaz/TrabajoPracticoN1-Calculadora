@@ -7,12 +7,12 @@
  *
  * \param pFile FILE* archivo que contiene a los empleados cargados
  * \param pArrayListEmployee LinkedList* puntero a donde se van a guardar dichos empleados
- * \return int cantidad de elementos que logra convertir
+ * \return int 0 if ok -1 if error
  *
  */
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-    int i;
+    int ifError=-1;
     int r;
     char id[50];
     char nombre[50];
@@ -27,7 +27,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
         {
             rewind(pFile);
         }
-        for(i=0;!feof(pFile);i++)
+        while(!feof(pFile))
         {
 
             r=fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,HorasTrabajadas,sueldo);
@@ -39,27 +39,28 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 
         }
         fclose(pFile);
+        ifError=0;
     }
 
-    return i;
+    return ifError;
 }
 
 /** \brief Conversor de binario a estructura
  *
  * \param pFile FILE* archivo que contiene a los empleados cargados
  * \param pArrayListEmployee LinkedList* puntero a donde se van a guardar dichos empleados
- * \return int cantidad de elementos que se lograron convertir
+ * \return int 0 if ok -1 if error
  *
  */
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-    int i;
+    int ifError=-1;
     int r;
     Employee* anEmployee;
 
     if(pFile != NULL && anEmployee!=NULL)
     {
-        for(i=0;!feof(pFile);i++)
+        while(!feof(pFile))
         {
             anEmployee=employee_new();
             r=fread(anEmployee,sizeof(Employee),1,pFile);
@@ -71,9 +72,10 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 
         }
         fclose(pFile);
+        ifError=0;
     }
 
-    return i;
+    return ifError;
 }
 
 
@@ -132,8 +134,7 @@ int parser_TextFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
         for(i=0;i<len;i++)
         {
             aux=(Employee*)ll_get(pArrayListEmployee,i);
-            //employee_ListAnEmployee(aux);
-            //system("pause");
+
             if(aux!=NULL)
             {
                 employee_getId(aux,&id);

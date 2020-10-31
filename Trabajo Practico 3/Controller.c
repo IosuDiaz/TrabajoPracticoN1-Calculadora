@@ -389,7 +389,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 /** \brief Ordena la lista de empleados por nombre o por ID de mayor a menor o de menor a mayor
  *
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 0 if ok -1 if error
  *
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
@@ -444,7 +444,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 0 if ok -1 if error
  *
  */
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
