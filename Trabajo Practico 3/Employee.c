@@ -3,7 +3,12 @@
 #include <string.h>
 #include <stdio.h>
 
-//constructor por defecto
+
+/** \brief Consturctor por defecto
+ *
+ * \return Employee* devuelve la direccion de memoria del puntero a estructura
+ *
+ */
 Employee* employee_new()
 {
     Employee* pointer;
@@ -21,7 +26,16 @@ Employee* employee_new()
     return pointer;
 }
 
-//constrcutor parametrizado
+
+/** \brief Constructor parametrizado: Asigna valores pasados por parametros a un puntero tipo estructura
+ *
+ * \param idStr char* id que se le asigna al empleado
+ * \param nombreStr char* nombre que se le asigna al empleado
+ * \param horasTrabajadasStr char* cantidad de horas trabajadas que se le asignan al empleado
+ * \param sueldoStr char* sueldo que se le asgina al empleado
+ * \return Employee* direccion de memoria del puntero con los valores asignados
+ *
+ */
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldoStr)
 {
     Employee* pointer;
@@ -50,6 +64,7 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
     }
 }
 
+
 int employee_setId(Employee* this,int id)
 {
     int ifError=1;
@@ -62,6 +77,7 @@ int employee_setId(Employee* this,int id)
 
     return ifError;
 }
+
 
 int employee_getId(Employee* this,int* id)
 {
@@ -164,7 +180,7 @@ void employee_ListAnEmployee(Employee* this)
         employee_getHorasTrabajadas(this,&hs);
         employee_getSueldo(this,&sueldo);
 
-        printf("\n%d %10s %10d %10d",id,nombre,hs,sueldo);
+        printf("\n %-10d %-15s %-15d %-15d",id,nombre,hs,sueldo);
 
     }
 

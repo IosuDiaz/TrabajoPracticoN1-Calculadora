@@ -3,6 +3,13 @@
 #include "LinkedList.h"
 #include "Employee.h"
 
+/** \brief Conversor de texto a estructura
+ *
+ * \param pFile FILE* archivo que contiene a los empleados cargados
+ * \param pArrayListEmployee LinkedList* puntero a donde se van a guardar dichos empleados
+ * \return int cantidad de elementos que logra convertir
+ *
+ */
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
     int i;
@@ -37,6 +44,13 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
     return i;
 }
 
+/** \brief Conversor de binario a estructura
+ *
+ * \param pFile FILE* archivo que contiene a los empleados cargados
+ * \param pArrayListEmployee LinkedList* puntero a donde se van a guardar dichos empleados
+ * \return int cantidad de elementos que se lograron convertir
+ *
+ */
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
     int i;
@@ -62,6 +76,14 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
     return i;
 }
 
+
+/** \brief Conversor de estructura a binario
+ *
+ * \param pFile FILE* archivo que va a guardar los empleados de la lista
+ * \param pArrayListEmployee LinkedList* puntero de donde se obtienen los empleados
+ * \return int cantidad de elementos que se lograron convertir
+ *
+ */
 int parser_BinaryFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
 {
     int i;
@@ -84,6 +106,13 @@ int parser_BinaryFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
     return i;
 }
 
+/** \brief Conversor de estructura a texto
+ *
+ * \param pFile FILE* archivo que va a guardar los empleados de la lista
+ * \param pArrayListEmployee LinkedList* puntero de donde se obtienen los empleados
+ * \return int cantidad de elementos que se lograron convertir
+ *
+ */
 int parser_TextFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
 {
     int i;

@@ -8,11 +8,17 @@
 #include "utn.h"
 #include "controller.h"
 
+/** \brief Muestra el menu y toma el dato
+ *
+ * \param selectedOption int* variable a cargar
+ * \return int  0 si ok  -1 si error
+ *
+ */
 int controller_Menu(int* selectedOption)
 {
     int ifError;
 
-    printf("\n-----------------------MENU-----------------------\n");
+    printf("\n------------------------------------MENU------------------------------------\n");
     printf("\n1) Cargar los datos de los empleados desde el archivo data.csv (modo texto).");
     printf("\n2) Cargar los datos de los empleados desde el archivo data.bin (modo binario).");
     printf("\n3) Alta de empleado");
@@ -29,7 +35,33 @@ int controller_Menu(int* selectedOption)
     return ifError;
 }
 
+/** \brief Muestra en tiempo real la cantidad de empleados que hay cargada
+ *
+ * \param pArrayListEmployee LinkedList* puntero del array de empleados
+ * \return void
+ *
+ */
+void controller_showCounterOfEmployees(LinkedList* pArrayListEmployee)
+{
+    int len;
+
+    len=ll_len(pArrayListEmployee);
+
+    printf("\n                   -----------------------------------------");
+    printf("\n                  |                                         |");
+    printf("\n                  |  Cantidad de empleados cargados: %-4d   |",len);
+    printf("\n                  |                                         |");
+    printf("\n                   -----------------------------------------");
+}
+
 //cuando se carga de txt sobreescribre en el bin
+/** \brief Carga el array con los datos obtenidos del archivo de texto
+ *
+ * \param path char* direccion del archivo
+ * \param pArrayListEmployee LinkedList* puntero en donde se van a guardar los empleados
+ * \return int 0 if ok -1 if error
+ *
+ */
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
@@ -49,6 +81,13 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Carga el array con los datos obtenidos del archivo de binario
+ *
+ * \param path char* direccion del archivo
+ * \param pArrayListEmployee LinkedList* puntero en donde se van a guardar los empleados
+ * \return int  0 if ok -1 if error
+ *
+ */
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
@@ -68,6 +107,12 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Agrega un empleado al array de empleados
+ *
+ * \param pArrayListEmployee LinkedList* puntero en donde se va a guarda el empleado
+ * \return int 0 if ok -1 if error
+ *
+ */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* aux;
@@ -124,10 +169,6 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
                 ifError=0;
             }
-            else
-            {
-                ifError=-1;
-            }
         }
     }
 
@@ -135,6 +176,12 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Se modifica a un empleado del array de empleados
+ *
+ * \param pArrayListEmployee LinkedList* puntero de donde se obtiene el empleado a modificar
+ * \return int 0 if ok -1 if error
+ *
+ */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* aux;
@@ -246,6 +293,12 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Remueve un empleado del array de empleados
+ *
+ * \param pArrayListEmployee LinkedList* puntero al cual se le va a borrar un empleado
+ * \return int 0 if ok -1 if error
+ *
+ */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* aux;
@@ -259,10 +312,6 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee!=NULL)
     {
-        printf("---------ELIMINAR UN EMPLEADO---------\n\n");
-
-        controller_ListEmployee(pArrayListEmployee);
-
         idIngresado=getInt("\nIngrese ID del empleado que quiera eliminar: ");
 
         len=ll_len(pArrayListEmployee);
@@ -299,6 +348,12 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Muestra la lista de empleados
+ *
+ * \param pArrayListEmployee LinkedList* puntero de donde se obtienen los empleados
+ * \return int 0 if ok -1 if error
+ *
+ */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
     int i;
@@ -311,7 +366,9 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     {
 
         len=ll_len(pArrayListEmployee);
-        printf("LEN: %d\n",len);
+
+        printf("%s %15s %17s %13s\n","ID","NOMBRE","HS TRABAJADAS","SUELDO");
+        printf("---------------------------------------------------------");
 
         for(i=0;i<len;i++)
         {
@@ -329,6 +386,12 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Ordena la lista de empleados por nombre o por ID de mayor a menor o de menor a mayor
+ *
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int opcionSubMenu;
@@ -377,6 +440,13 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Guarda el contenido del array de empleados en el archivo de texto
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
@@ -392,9 +462,15 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 }
 
 
+/** \brief Guarda el contenido del array de empleados en el archivo de texto
+ *
+ * \param path char* Direccion del archivo
+ * \param pArrayListEmployee LinkedList* Puntero de donde se obtienen los empleados
+ * \return int 0 if ok -1 if error
+ *
+ */
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
-
     FILE* pFile;
     int ifError=-1;
     pFile=fopen(path,"wb");
