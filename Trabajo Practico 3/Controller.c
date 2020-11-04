@@ -54,7 +54,7 @@ void controller_showCounterOfEmployees(LinkedList* pArrayListEmployee)
     printf("\n                   -----------------------------------------");
 }
 
-//cuando se carga de txt sobreescribre en el bin
+
 /** \brief Carga el array con los datos obtenidos del archivo de texto
  *
  * \param path char* direccion del archivo

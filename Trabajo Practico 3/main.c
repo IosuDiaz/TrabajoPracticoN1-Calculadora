@@ -40,7 +40,7 @@ int main()
                 {
                     //1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).
                     case 1:
-                        if(controller_loadFromText("data.csv",listaEmployee)!=0)//ifErrorLOAD=controller_loadFromText("r",listaEmployee);//0 si error - !=0 si ok
+                        if(controller_loadFromText("data.csv",listaEmployee)==0)//ifErrorLOAD=controller_loadFromText("r",listaEmployee);//0 si error - !=0 si ok
                         {
                             printf("\nSe cargaron correctamente los empleados de la lista txt\n\n");
                         }
@@ -53,7 +53,7 @@ int main()
                         break;
                     //2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).
                     case 2:
-                        if(controller_loadFromBinary("data.bin",listaEmployee)!=0)//ifErrorbin=controller_loadFromBinary("wb",listaEmployee);
+                        if(controller_loadFromBinary("data.bin",listaEmployee)==0)//ifErrorbin=controller_loadFromBinary("wb",listaEmployee);
                         {
                             printf("\nSe cargaron correctamente los empleados de la lista bin\n\n");
                         }
