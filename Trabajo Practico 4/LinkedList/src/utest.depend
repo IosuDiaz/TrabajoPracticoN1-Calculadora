@@ -4858,7 +4858,7 @@
 
 1604655132 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\testing\utest.h
 
-1604757977 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\inc\linkedlist.h
+1605049461 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\inc\linkedlist.h
 
 1604655146 c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\testing\inc\employee.h
 
@@ -4886,7 +4886,7 @@
 	"../../inc/LinkedList.h"
 	"../../testing/inc/Employee.h"
 
-1604655136 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\testing\src\containsalltest.c
+1605797993 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\testing\src\containsalltest.c
 	"../../testing/utest.h"
 	<stdio.h>
 	<stdlib.h>
@@ -5033,7 +5033,7 @@
 	"../../inc/LinkedList.h"
 	"../../testing/inc/Employee.h"
 
-1604655142 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\testing\src\pushtest.c
+1605191321 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\testing\src\pushtest.c
 	"../../testing/utest.h"
 	<stdio.h>
 	<stdlib.h>
@@ -5079,13 +5079,13 @@
 	<stdlib.h>
 	<string.h>
 
-1605048678 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\src\linkedlist.c
+1606148317 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\src\linkedlist.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../inc/LinkedList.h"
 
-1605048678 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\src\main.c
+1606148410 source:c:\users\user\desktop\tp_laboratorio_1\trabajo practico 4\linkedlist\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

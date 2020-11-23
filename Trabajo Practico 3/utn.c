@@ -413,7 +413,7 @@ int CalculateId(int len)
 
     static int maxId=0;
     int id=-1;
-    maxId=len-1;
+    maxId=len;
     if(id<0)
     {
         maxId++;

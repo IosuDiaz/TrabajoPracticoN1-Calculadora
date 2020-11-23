@@ -255,7 +255,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                         break;
                 }
 
-                confirm=toupper(getChar("\nPara agregar el empleado cargado ingrese la letra 'S'\nPara cancelar la carga 'X'"));
+                confirm=toupper(getChar("\nPara modificar el empleado cargado ingrese la letra 'S'\nPara cancelar la carga 'X'"));
                 if(confirm=='S' && (!validNombre || !validHs || !validSueldo))
                 {
                     switch(opcionSubMenu)
@@ -273,20 +273,11 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                     ifError=0;
                     controller_ListEmployee(pArrayListEmployee);
                 }
-                else
-                {
-                    printf("\nNo se ha logrado guardar el dato modificado");
-                }
+
             }
-            else
-            {
-                printf("\nError al seleccionar el dato a modificar.");
-            }
+
         }
-        else
-        {
-            printf("\nEl ID no fue encontrado");
-        }
+
     }
 
     return ifError;
@@ -338,10 +329,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 
             }
         }
-        else
-        {
-            printf("\nID no encontrado");
-        }
+
     }
 
     return ifError;
@@ -362,7 +350,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     int ifError=-1;
 
 
-    if(pArrayListEmployee!=NULL && aux!=NULL)
+    if(pArrayListEmployee!=NULL)
     {
 
         len=ll_len(pArrayListEmployee);
@@ -372,7 +360,6 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 
         for(i=0;i<len;i++)
         {
-
             aux=(Employee*)ll_get(pArrayListEmployee,i);
             if(aux!=NULL)
             {
@@ -399,7 +386,6 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     int criterio;
     int validCriterio;
     int ifError=-1;
-    int a;
 
 
     if(pArrayListEmployee!=NULL)

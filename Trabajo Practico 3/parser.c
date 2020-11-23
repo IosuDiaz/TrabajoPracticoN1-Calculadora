@@ -34,7 +34,10 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
             if(r==4)
             {
                 anEmployee=employee_newParametros(id,nombre,HorasTrabajadas,sueldo);
-                ll_add(pArrayListEmployee,anEmployee);
+                if(anEmployee!=NULL)
+                {
+                    ll_add(pArrayListEmployee,anEmployee);
+                }
             }
 
         }
@@ -63,13 +66,15 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
         while(!feof(pFile))
         {
             anEmployee=employee_new();
-            r=fread(anEmployee,sizeof(Employee),1,pFile);
-            if(r==1)
+            if(anEmployee!=NULL)
             {
-                ll_add(pArrayListEmployee,anEmployee);
+                r=fread(anEmployee,sizeof(Employee),1,pFile);
+
+                if(r==1)
+                {
+                    ll_add(pArrayListEmployee,anEmployee);
+                }
             }
-
-
         }
         fclose(pFile);
         ifError=0;
@@ -137,10 +142,10 @@ int parser_TextFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
 
             if(aux!=NULL)
             {
-                employee_getId(aux,&id);
-                employee_getNombre(aux,nombre);
-                employee_getHorasTrabajadas(aux,&hs);
-                employee_getSueldo(aux,&sueldo);
+                if(!employee_getId(aux,&id) &&
+                !employee_getNombre(aux,nombre) &&
+                !employee_getHorasTrabajadas(aux,&hs) &&
+                !employee_getSueldo(aux,&sueldo))
                 fprintf(pFile,"%d,%s,%d,%d\n",id,nombre,hs,sueldo);
             }
         }

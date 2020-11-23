@@ -56,7 +56,6 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
             //se libera puntero porque sino se le pasa NULL a free() y no se libera el puntero
             free(pointer);
             pointer=NULL;
-            printf("\nNo paso los set");
         }
 
 
@@ -146,7 +145,7 @@ int employee_setSueldo(Employee* this,int sueldo)
 {
     int ifError=1;
 
-    if(this!=NULL)
+    if(this!=NULL && sueldo>0)
     {
         this->sueldo=sueldo;
         ifError=0;
@@ -185,16 +184,17 @@ void employee_ListAnEmployee(Employee* this)
     }
 
 }
-
+//sacar flechas
 int employee_CompareByName(Employee* e1, Employee* e2)
 {
     int criterio;
-    //char nombree1;
-    //char nombre2;
+    char nombre1[50];
+    char nombre2[50];
     if(e1!=NULL && e2!=NULL)
     {
-        //employee_getNombre(e1,);
-        criterio=strcmp(e1->nombre,e2->nombre);
+        employee_getNombre(e1,nombre1);
+        employee_getNombre(e2,nombre2);
+        criterio=strcmp(nombre1,nombre2);
     }
 
     return criterio;
@@ -202,18 +202,26 @@ int employee_CompareByName(Employee* e1, Employee* e2)
 
 int employee_CompareById(Employee* e1, Employee* e2)
 {
-    int criterio=0;
+    int criterio;
+    int idUno;
+    int idDos;
+
     if(e1!=NULL && e2!=NULL)
     {
-        if(e1->id>e2->id)
+        //retornar la resta de los id tal cual kcomo esta en la de comprar por id
+        if(!employee_getId(e1,&idUno) && !employee_getId(e2,&idDos))
         {
-            criterio=1;
-        }
-        else
-        {
-            if(e1->id<e2->id)
+            criterio=idUno-idDos;
+            if(criterio>0)
             {
-                criterio=-1;
+                criterio=1;
+            }
+            else
+            {
+                if(criterio<0)
+                {
+                    criterio=-1;
+                }
             }
         }
     }
